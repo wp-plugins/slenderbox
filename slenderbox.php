@@ -3,14 +3,14 @@
  * Plugin Name: Slenderbox
  * Plugin URI: https://github.com/mpetroff/slenderbox-wp
  * Description: Overlays images on the current page using Slenderbox, a lightweight and framework-free lightbox plugin that can be used with valid HTML5.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Matthew Petroff
  * Author URI: http://www.mpetroff.net/
  */
 
 /*
  * Slenderbox - A Lightweight Lightbox Script
- * Copyright (c) 2012 Matthew Petroff
+ * Copyright (c) 2012-2013 Matthew Petroff
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -93,7 +93,10 @@ if(get_option('slenderbox_automate') == 1) {
 
 // Include script if not viewing an admin page
 if(!is_admin()) {
-    wp_enqueue_script('slenderbox', plugins_url('slenderbox.js', __FILE__));
+    function slenderbox_scripts() {
+        wp_enqueue_script('slenderbox', plugins_url('slenderbox.js', __FILE__));
+    }
+    add_action('wp_enqueue_scripts', 'slenderbox_scripts');
 }
 
 ?>
